@@ -1,9 +1,11 @@
+
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:haberler/src/app/widget/turkeymap/ilHaber.dart';
-import 'package:haberler/src/app/widget/turkeymap/turkeymapSVG.dart';
-import 'package:path_drawing/path_drawing.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'ilHaber.dart';
+import 'turkeymapSVG.dart';
+
 
 class TurkeyMaps extends StatelessWidget {
   @override
@@ -11,29 +13,29 @@ class TurkeyMaps extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             "TÜM İLLER",
             style: TextStyle(color: Colors.black),
           ),
           centerTitle: true,
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: Colors.black,
           ),
           backgroundColor: Colors.white,
           titleSpacing: 1.0,
         ),
-        body: Container(
+        body: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          child: Maps(),
+          child: const Maps(),
         ));
   }
 }
 
-String Sehirs;
+String Sehirs="";
 
 class Maps extends StatefulWidget {
-  const Maps({Key key}) : super(key: key);
+  const Maps({Key? key}) : super(key: key);
 
   @override
   _MapsState createState() => _MapsState();
@@ -61,7 +63,7 @@ class _MapsState extends State<Maps> {
           child: CustomPaint(
             willChange: true,
             isComplex: true,
-            painter: MapPainter(notifier, context),
+            painter: MapPainter(notifier),
             child: SizedBox.expand(),
           ),
         ),
@@ -70,40 +72,27 @@ class _MapsState extends State<Maps> {
   }
 }
 
-/*
-Listener(
-              onPointerDown: (e) => notifier.value = e.localPosition,
-            onPointerMove: (e) => notifier.value = e.localPosition,
-            // onPointerDown: (e) => Navigator.push( context, MaterialPageRoute( builder: (context) => IlNews(shapes.toString()))),
 
-            child: CustomPaint(
-              willChange: true,
-              isComplex: true,
-              painter: MapPainter(notifier,context),
-              child: SizedBox.expand(
-
-              ),
-            ),
-          ),*/
 class Shape {
   Shape(strPath, this.label, this._color) : _path = parseSvgPathData(strPath);
 
   void transform(Matrix4 matrix) =>
       _transformedPath = _path.transform(matrix.storage);
-  BuildContext context;
+  
   final Path _path;
   Path _transformedPath;
   final String label;
   final Color _color;
+
 }
 
 class MapPainter extends CustomPainter {
-  MapPainter(this._notifier, BuildContext context) : super(repaint: _notifier);
+   MapPainter(this._notifier) : super(repaint: _notifier);
 
   final navigatorKey = GlobalKey<NavigatorState>();
 
   final ValueNotifier<Offset> _notifier;
-  BuildContext context;
+  
   final Paint _paint = Paint();
   Size _size = Size.zero;
 
@@ -155,7 +144,7 @@ class MapPainter extends CustomPainter {
       ))
         ..pushStyle(ui.TextStyle(
           color: Colors.white,
-          shadows: kElevationToShadow[1] + kElevationToShadow[2],
+           shadows: kElevationToShadow[1],
         ))
         ..addText(selectedShape.label);
 
@@ -174,7 +163,6 @@ class MapPainter extends CustomPainter {
   bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
 
-// ignore: non_constant_identifier_names
 dynamic Sehir(country) {
 
   Sehirs = country.toString();
