@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:path_drawing/path_drawing.dart';
 import 'ilHaber.dart';
 import 'turkeymapSVG.dart';
 
@@ -84,7 +85,7 @@ class Shape {
   final String label;
   final Color _color;
 
-  static parseSvgPathData(strPath) {}
+
 
 }
 
