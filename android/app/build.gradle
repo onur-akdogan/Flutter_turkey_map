@@ -49,7 +49,10 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
-
+    lintOptions {
+        disable 'InvalidPackage'
+        checkReleaseBuilds false //Insert this line
+    }
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
