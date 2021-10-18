@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 class IlHaberleri extends StatefulWidget {
-  const IlHaberleri({Key ?key}) : super(key: key);
+  const IlHaberleri({Key key}) : super(key: key);
 
   @override
   _IlHaberleriState createState() => _IlHaberleriState();
@@ -26,7 +26,7 @@ class _IlHaberleriState extends State<IlHaberleri> {
 class IlNews extends StatelessWidget {
   var secilenil;
 
-  IlNews(this.secilenil, {Key ?key}) : super(key: key);
+  IlNews(this.secilenil, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

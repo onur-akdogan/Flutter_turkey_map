@@ -35,7 +35,7 @@ class TurkeyMaps extends StatelessWidget {
 String Sehirs="";
 
 class Maps extends StatefulWidget {
-  const Maps({Key? key}) : super(key: key);
+  const Maps({Key key}) : super(key: key);
 
   @override
   _MapsState createState() => _MapsState();
@@ -83,6 +83,8 @@ class Shape {
   Path _transformedPath;
   final String label;
   final Color _color;
+
+  static parseSvgPathData(strPath) {}
 
 }
 
